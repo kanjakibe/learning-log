@@ -1,0 +1,88 @@
+{% load bootstrap4 %}
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+       shrink-to-fit=no">
+    <title>Learning Log</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+
+
+</head>
+{%load static %}
+
+<link rel="stylesheet"  href="{% static 'img/style.css' %}">
+
+<body style="background-image:url('{% static 'img/img6.jpg' %}'); background-repeat: no-repeat;
+background-size: cover; background-position: center; height: 950px; width: 100%;">
+
+
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5 border-8">
+
+      <a class="navbar-brand" href="{% url 'learning_logs:index'%}">Learning Log</a>
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+             <ul class="navbar-nav mx-auto">
+
+
+
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                 <li class="nav-item">
+                  <a class="nav-link" href="{% url 'learning_logs:topics'%}">
+                      Topics</a></li>
+                {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <span class="navbar-text" style="font-family: 'Arial black'; color: white; "}">Hello, {{ user.username }}.</span>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'users:login' %}">Log in</a></li>
+                {% endif %}
+            </ul>
+      </div>
+  </nav>
+
+  <main role="main" class="container">
+      <div class="pb-2 mb-2 border-bottom">
+          {% block page_header %}{% endblock page_header %}
+      </div>
+      <div>
+          {% block content %}{% endblock content %}
+      </div>
+  </main>
+
+
+
+
+
+</body>
+
+</html>

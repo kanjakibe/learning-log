@@ -1,0 +1,29 @@
+{% extends 'learning_logs/base.html' %}
+{%load bootstrap4 %}
+
+{% block page_header %}
+  <h3 style="color: white;">{{ topic  }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <p>
+      <a href="{% url 'learning_logs:new_entry' topic.id %}" style="color: silver ; font-family: 'Arial black';">Add new entry</a>
+  </p>
+
+  {% for entry in entries %}
+    <div class="card mb-3" style="background-color: rgba(0,0,0,0.3)!important;">
+      <h4 class="card-header" style="color: white;">
+          {{ entry.date_added|date:'M d, Y H:i' }}
+          <small><a href="{% url 'learning_logs:edit_entry' entry.id %}" style=" font-family: 'Arial black';">edit entry</a></small>
+      </h4>
+
+      <div class="card-body" style="color: white; font-family: 'Arial black';">
+          {{ entry.text|linebreaks }}
+      </div>
+    </div>
+  {% empty %}
+      <p>There are no entries for this topic yet.</p>
+  {% endfor %}
+
+
+{% endblock content %}

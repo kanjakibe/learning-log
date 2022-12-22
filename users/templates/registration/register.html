@@ -1,0 +1,17 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+  <div class="jumbotron" style="background-color: rgba(0,0,0,0.3)!important;">
+
+      <form method="post" action="{% url 'users:register' %}" >
+          <div class="text" style="color: white!important; font-family: 'Calibri'; font-size: 20px;" >
+          {% csrf_token %}
+          {{ form.as_p }}
+          </div>
+
+          <button name="submit" class="btn btn-primary">Register</button>
+          <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+      </form>
+  </div>
+
+{% endblock content %}

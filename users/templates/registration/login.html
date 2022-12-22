@@ -1,0 +1,38 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+
+
+
+
+{% block content %}
+  <div class="jumbotron" style="width: 450px!important; margin: auto!important; border-radius: 25px!important; background_color: rgba(0,0,0,10)!important; ">
+      <div class="header" style="color: white; font-family: 'Calibri'; text_align: center;">
+          <h1 style="text_align: center;">Log In</h1>
+      </div>
+      <div class="main" style="width: 380px!important; margin: auto!important; border-radius: 25px!important; background_color: rgba(0,0,0,10)!important;">
+          <form method="post" action="{% url 'users:login' %}" class="form" style="width: 380px!important; margin: auto!important; border-radius: 25px!important; background_color: rgba(0,0,0,10)!important;"></form>
+
+
+
+          <form method="post" action="{% url 'users:login' %}"  >
+              {% csrf_token %}
+              {% bootstrap_form form %}
+              {% buttons %}
+
+
+
+
+                <button name="submit"  class="btn btn-primary">Log in</button>
+              {% endbuttons %}
+              <input type="hidden" name="next"
+                     value="{% url 'learning_logs:index' %}"  />
+          </form>
+
+      </div>
+
+
+
+
+  </div>
+
+{% endblock content %}
